@@ -136,9 +136,17 @@ def handle_userinput(user_question):
         
         if not grounded:
             answer = "I'm sorry, but I couldn't find an answer to that question in the documents you provided."
-    
-        st.session_state.chat_history.append({"role": "user", "content": user_question})
-        st.session_state.chat_history.append({"role": "assistant", "content": answer})
+        else:
+            raw_answer = llm.predict(user_question)
+            answer = raw_answer.strip()
+
+        # Always make the response polite
+        answer = make_response_polite(answer)
+
+    # Add to chat history
+    chat_history.append({"role": "assistant", "content": answer})
+    return answer
+
 
 def auto_play_audio_streamlit(text, lang="en"):
     tts = gTTS(text, lang=lang)
