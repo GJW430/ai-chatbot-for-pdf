@@ -182,11 +182,11 @@ def main():
 
     # Sidebar for PDF Upload
     with st.sidebar:
-        st.subheader("Your Documents")
+        st.subheader("📄 Your Documents")
         docs = st.session_state.get("docs", [])
         if len(docs) < 3:
             new_docs = st.file_uploader(
-                "📄 Upload up to 3 documents (PDF, DOCX, or TXT)",
+                "📤 Upload up to 3 documents (PDF, DOCX, or TXT)",
                 type=["pdf", "docx", "txt"],
                 accept_multiple_files=True,
                 key="file_uploader_key"
@@ -203,7 +203,7 @@ def main():
             st.info("You have uploaded the maximum of 3 documents.")
 
         if docs:
-            process_button = st.button("Process")
+            process_button = st.button("⚙️ Process")
             if process_button:
                 with st.spinner("Processing..."):
                     labeled_docs = get_labeled_documents_from_any(docs)
