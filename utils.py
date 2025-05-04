@@ -30,30 +30,18 @@ FAREWELL_REPLIES = [
     "Thanks! I'm here if you need me again."
 ]
 
-def make_response_polite(response: str) -> str:
-    impolite_patterns = [
-        r"\bI don't know\b",
-        r"\bI do not know\b",
-        r"\bNot sure\b",
-        r"\bI'm not sure\b",
-        r"\bCannot answer\b",
-        r"\bI have no idea\b",
-        r"\bI can't answer that\b"
-    ]
+def make_response_polite(text):
+    polite_replacements = {
+        "i don't know": "I'm not sure about that at the moment, but I’ll try to help if you give me more context.",
+        "idk": "Hmm, I don’t have the answer right now, but I'm happy to look into it further.",
+        "not sure": "I'm not completely sure, but I can try to find out more.",
+    }
 
-    polite_alternatives = [
-        "I'm not quite sure about that, but I'd be happy to help if you provide more context!",
-        "That's a great question — let me know more details so I can assist better.",
-        "I couldn't find that information in the provided documents. Could you try rephrasing?",
-        "I'm sorry, I don't have enough information to give a confident answer.",
-        "Apologies, that’s outside what I can answer based on what I’ve seen."
-    ]
-
-    for pattern in impolite_patterns:
-        if re.search(pattern, response, re.IGNORECASE):
-            return random.choice(polite_alternatives)
-
-    return response  # If no impolite phrase found, return the original
+    lower_text = text.lower().strip()
+    for rude, polite in polite_replacements.items():
+        if rude in lower_text:
+            return polite
+    return text  # Return original if no match
 
 def handle_greeting(user_input: str):
     lower_input = user_input.lower().strip()
