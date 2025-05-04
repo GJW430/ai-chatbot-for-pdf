@@ -32,13 +32,13 @@ FAREWELL_REPLIES = [
 
 def make_response_polite(response: str) -> str:
     impolite_patterns = [
-        r"\bi don't know\b",
-        r"\bi do not know\b",
-        r"\bnot sure\b",
-        r"\bi'm not sure\b",
-        r"\bcannot answer\b",
-        r"\bi have no idea\b",
-        r"\bi can't answer that\b"
+        r"\bI don't know\b",
+        r"\bI do not know\b",
+        r"\bNot sure\b",
+        r"\bI'm not sure\b",
+        r"\bCannot answer\b",
+        r"\bI have no idea\b",
+        r"\bI can't answer that\b"
     ]
 
     polite_alternatives = [
