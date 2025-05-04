@@ -30,6 +30,31 @@ FAREWELL_REPLIES = [
     "Thanks! I'm here if you need me again."
 ]
 
+def make_response_polite(response: str) -> str:
+    impolite_patterns = [
+        r"\bi don't know\b",
+        r"\bi do not know\b",
+        r"\bnot sure\b",
+        r"\bi'm not sure\b",
+        r"\bcannot answer\b",
+        r"\bi have no idea\b",
+        r"\bi can't answer that\b"
+    ]
+
+    polite_alternatives = [
+        "I'm not quite sure about that, but I'd be happy to help if you provide more context!",
+        "That's a great question — let me know more details so I can assist better.",
+        "I couldn't find that information in the provided documents. Could you try rephrasing?",
+        "I'm sorry, I don't have enough information to give a confident answer.",
+        "Apologies, that’s outside what I can answer based on what I’ve seen."
+    ]
+
+    for pattern in impolite_patterns:
+        if re.search(pattern, response, re.IGNORECASE):
+            return random.choice(polite_alternatives)
+
+    return response  # If no impolite phrase found, return the original
+
 def handle_greeting(user_input: str):
     lower_input = user_input.lower().strip()
     if any(keyword in lower_input for keyword in GREETING_KEYWORDS) and len(lower_input.split()) <= 4:
