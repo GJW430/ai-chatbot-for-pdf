@@ -1,0 +1,11 @@
+streamlit
+langchain
+langchain-community
+PyPDF2
+openai
+tiktoken
+faiss-cpu
+fpdf
+pytz
+gTTS #text audio
+python-docx
