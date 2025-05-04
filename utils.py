@@ -30,19 +30,6 @@ FAREWELL_REPLIES = [
     "Thanks! I'm here if you need me again."
 ]
 
-def make_response_polite(text):
-    polite_replacements = {
-        "i don't know": "I'm not sure about that at the moment, but I’ll try to help if you give me more context.",
-        "idk": "Hmm, I don’t have the answer right now, but I'm happy to look into it further.",
-        "not sure": "I'm not completely sure, but I can try to find out more.",
-    }
-
-    lower_text = text.lower().strip()
-    for rude, polite in polite_replacements.items():
-        if rude in lower_text:
-            return polite
-    return text  # Return original if no match
-
 def handle_greeting(user_input: str):
     lower_input = user_input.lower().strip()
     if any(keyword in lower_input for keyword in GREETING_KEYWORDS) and len(lower_input.split()) <= 4:
